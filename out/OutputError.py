@@ -1,0 +1,2 @@
+class OutputError(IOError):
+    pass

@@ -5,7 +5,7 @@ After=syslog.target
 [Service]
 Type=simple
 User=root
-ExecStart=/src/gps-splitter/gps-splitter.py -i /dev/ttyAMA0 -b 9600 -o /dev/gps0 -o /dev/gps0_gpsd -o /dev/gps0_tap
+ExecStart=/src/gps-splitter/gps-splitter.py -i /dev/ttyAMA0 -b 9600 -o /dev/gps0 -o /dev/gps0_gpsd
 Restart=on-abort
 
 [Install]

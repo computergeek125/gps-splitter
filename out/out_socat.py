@@ -1,3 +1,7 @@
+import os
+import shutil
+import time
+
 from out.out_base import out_base
 from out.OutputError import OutputError
 from subprocess import Popen, PIPE
@@ -10,6 +14,9 @@ class out_socat(out_base):
         self.argv = [self.socat, "-", "pty,link=\"{0}\",raw".format(self.port)]
     def start(self):
         self.process = Popen(self.argv, stdin=PIPE, stdout=PIPE, stderr=PIPE, bufsize=0)
+        time.sleep(1)
+        os.chmod(self.port, 0o660)
+        shutil.chown(self.port, user="root", group="dialout")
     def write(self, buf):
         try:
             self.process.stdin.write(buf)
